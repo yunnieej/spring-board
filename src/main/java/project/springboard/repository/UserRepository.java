@@ -5,4 +5,5 @@ import project.springboard.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    boolean existsByUserId(String userId);
 }
