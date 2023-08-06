@@ -29,10 +29,10 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(@Valid UserDto userDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "user/join.html";
-        }
+    public String join(UserDto userDto, BindingResult bindingResult){
+//        if(bindingResult.hasErrors()){
+//            return "user/join.html";
+//        }
         userService.save(userDto);
         System.out.println(userDto);
         return "redirect:/";
@@ -43,6 +43,11 @@ public class UserController {
         System.out.println("print : " + userId);
         //중복일 경우 true, 아닐경우 false
         return ResponseEntity.ok(userService.existsByUserId(userId));
+    }
+
+    @GetMapping("/login")
+    public String loginForm(){
+        return "user/login.html";
     }
 
 }
