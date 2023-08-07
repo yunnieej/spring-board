@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/spring_board?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: 9008
+    password: 8282!@
   thymeleaf:
     cache: false
   mvc:
@@ -21,6 +21,11 @@ spring:
       #      location: C:\Users\AJU\Desktop\test\my-board
       max-file-size: 50MB
       max-request-size: 50MB
+
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 
   # spring data jpa 설정
   jpa:
