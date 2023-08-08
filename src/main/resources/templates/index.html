@@ -22,6 +22,20 @@
                 로그인
             </button>
         </div>
+        <div class="col">
+            <!--            <button class="w-100 btn btn-dark btn-lg"-->
+            <!--                    onclick="location.href='items.html'"-->
+            <button type="button" th:onclick="|location.href='@{/}'|">
+                로그아웃
+            </button>
+        </div>
+        <div class="col">
+            <!--            <button class="w-100 btn btn-dark btn-lg"-->
+            <!--                    onclick="location.href='items.html'"-->
+            <button type="button" onclick="logout_btn()" th:onclick="|location.href='@{/post}'|" >
+                글쓰기
+            </button>
+        </div>
     </div>
 </div> <!-- /container -->
 
