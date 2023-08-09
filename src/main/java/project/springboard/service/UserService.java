@@ -1,5 +1,6 @@
 package project.springboard.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,14 +11,9 @@ import project.springboard.repository.UserRepository;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
-
 
     @Transactional
     public boolean existsByUserId(String userId){
@@ -43,7 +39,6 @@ public class UserService {
                 return false;
             }
         }
-
     }
 
 

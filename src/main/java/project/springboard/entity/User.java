@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,9 +21,11 @@ public class User {
     private String userId;
     private String userPassword;
     private String userName;
+    @OneToMany(mappedBy="user")
+    private List<Board> boards = new ArrayList<>();
 
     @Builder
-    public User(Long id, String userId, String userPassword, String userName, String userPhoneNumber, String userEmail){
+    public User(Long id, String userId, String userPassword, String userName){
         this.id = id;
         this.userId = userId;
         this.userPassword = userPassword;

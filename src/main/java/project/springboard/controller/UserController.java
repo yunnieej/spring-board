@@ -31,6 +31,7 @@ public class UserController {
         else{
             System.out.println("로그인 유저 id : " + userId);
         }
+
         return "/index.html";
     }
 
@@ -66,9 +67,7 @@ public class UserController {
                         UserDto userDto, HttpServletRequest httpServletRequest){
 
         System.out.println("로그인한 id: " + userId);
-        System.out.println("로그인한 pw: "+userPassword);
-
-//        boolean login = userService.login(userId, userPassword);
+        System.out.println("로그인한 pw: " + userPassword);
 
         if(userService.login(userId, userPassword) == true) {
             // 세션이 있으면 세션값 return, 없으면 생성한 후 return
@@ -84,8 +83,20 @@ public class UserController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        System.out.println("session은?" + session);
+
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/post")
     public String postForm(@SessionAttribute(name="userId", required = false) String userId, Model model){
+
         if(userId == null){
             return "redirect:/";
         }
