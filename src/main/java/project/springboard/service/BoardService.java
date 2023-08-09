@@ -10,9 +10,5 @@ import project.springboard.repository.BoardRepository;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    @Transactional
-    public String findById(){
-
-    }
 
 }
