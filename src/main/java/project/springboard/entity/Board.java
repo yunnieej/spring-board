@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+/**
 @Entity
 @Getter
 @Table(name="board")
@@ -30,3 +30,4 @@ public class Board extends BaseEntity{
 
 
 }
+ */

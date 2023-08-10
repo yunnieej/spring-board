@@ -9,29 +9,33 @@
         var message = $('input[name=logout_alert]').val();
         //var message = [[${message}]];
 
-        logout_btn = () => {
+        logout_btn = () => {}
 
     </script>
 </head>
 <body>
+
 <div class="container" style="max-width: 600px">
     <div class="py-5 text-center">
         <h2>홈 화면</h2>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col" th:block th:unless="${sessionUserId == null}">
+            <p th:text ="${sessionName}+'('+${sessionUserId}+')  이 로그인중입니다.'"></p>
+        </div><br>
+        <div class="col" th:block th:if="${sessionUserId == null}">
             <button type="button" th:onclick="|location.href='@{/join}'|">
                 회원 가입
             </button>
         </div><br>
-        <div class="col">
+        <div class="col" th:block th:if="${sessionUserId == null}">
 <!--            <button class="w-100 btn btn-dark btn-lg"-->
 <!--                    onclick="location.href='items.html'"-->
             <button type="button" th:onclick="|location.href='@{/login}'|">
                 로그인
             </button>
         </div><br>
-        <div class="col">
+        <div class="col" th:block th:unless="${sessionUserId == null}">
             <!--            <button class="w-100 btn btn-dark btn-lg"-->
             <!--                    onclick="location.href='items.html'"-->
             <form action="/logout">
@@ -39,7 +43,7 @@
             </form>
             <input type="hidden" name="logout_alert" th:text="${message}">
         </div><br>
-        <div class="col">
+        <div class="col" th:block th:unless="${sessionUserId == null}">
             <!--            <button class="w-100 btn btn-dark btn-lg"-->
             <!--                    onclick="location.href='items.html'"-->
             <button type="button" th:onclick="|location.href='@{/post}'|">
@@ -48,6 +52,5 @@
         </div>
     </div>
 </div> <!-- /container -->
-
 </body>
 </html>

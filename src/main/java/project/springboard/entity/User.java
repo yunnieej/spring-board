@@ -21,8 +21,8 @@ public class User {
     private String userId;
     private String userPassword;
     private String userName;
-    @OneToMany(mappedBy="user")
-    private List<Board> boards = new ArrayList<>();
+//    @OneToMany(mappedBy="user")
+//    private List<Board> boards = new ArrayList<>();
 
     @Builder
     public User(Long id, String userId, String userPassword, String userName){

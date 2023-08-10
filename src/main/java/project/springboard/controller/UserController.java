@@ -24,20 +24,28 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String main(@SessionAttribute(name="userId", required = false) String userId){
+    public String main(@SessionAttribute(name="userId", required = false) String userId ,
+                       @SessionAttribute(name="userName", required = false) String userName, Model model){
         if(userId == null){
             System.out.println("로그인 안함");
         }
         else{
             System.out.println("로그인 유저 id : " + userId);
+            System.out.println(userName);
         }
-
+        model.addAttribute("sessionUserId",userId);
+        model.addAttribute("sessionUserName",userName);
         return "/index.html";
     }
 
     @GetMapping("/join")
-    public String joinForm(){
+    public String joinForm(HttpServletRequest httpServletRequest){
 //        model.addAttribute("userDto", new UserDto());
+        HttpSession session = httpServletRequest.getSession(true);
+        session.getAttribute("userId");
+        if(session.getAttribute("userId") != null){
+            return "redirect:/";
+        }
         return "user/join.html";
     }
 
@@ -74,7 +82,10 @@ public class UserController {
             HttpSession session = httpServletRequest.getSession(true);
             System.out.println("세션값은" + session);
             // session이 생성되었으니까 이 session의 key, value 값을 넣어준다.
+            UserDto loginUser = new UserDto();
             session.setAttribute("userId", userDto.getUserId());
+            session.setAttribute("userName", userDto.getUserName());
+            System.out.println("getUsername!!!" + userDto.getUserName());
             session.setMaxInactiveInterval(1800); //1800초 = 30분
             return "redirect:/";
         }
