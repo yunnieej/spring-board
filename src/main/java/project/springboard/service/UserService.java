@@ -39,6 +39,16 @@ public class UserService {
         }
     }
 
+    public UserDto findByUserId(String userId){
+        User byUserId = userRepository.findByUserId(userId);
+
+        UserDto userDto = UserDto.builder()
+                .userId(byUserId.getUserId())
+                .userName(byUserId.getUserName())
+                .userPassword(byUserId.getUserPassword())
+                .build();
+        return userDto;
+    }
 
 
 

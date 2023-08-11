@@ -33,8 +33,8 @@ public class UserController {
             System.out.println("로그인 유저 id : " + userId);
             System.out.println(userName);
         }
-        model.addAttribute("sessionUserId",userId);
-        model.addAttribute("sessionUserName",userName);
+        model.addAttribute("sessionUserId", userId);
+        model.addAttribute("sessionUserName", userName);
         return "/index.html";
     }
 
@@ -82,10 +82,11 @@ public class UserController {
             HttpSession session = httpServletRequest.getSession(true);
             System.out.println("세션값은" + session);
             // session이 생성되었으니까 이 session의 key, value 값을 넣어준다.
-            UserDto loginUser = new UserDto();
-            session.setAttribute("userId", userDto.getUserId());
-            session.setAttribute("userName", userDto.getUserName());
-            System.out.println("getUsername!!!" + userDto.getUserName());
+
+            UserDto loginUser = userService.findByUserId(userId);
+            session.setAttribute("userId", loginUser.getUserId());
+            session.setAttribute("userName", loginUser.getUserName());
+            System.out.println("getUsername!!!" + loginUser.getUserName());
             session.setMaxInactiveInterval(1800); //1800초 = 30분
             return "redirect:/";
         }

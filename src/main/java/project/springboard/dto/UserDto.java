@@ -29,8 +29,8 @@ public class UserDto {
 
 
     @Builder
-    public UserDto(Long id, String userId, String userPassword, String userName){
-//        this.id = id;
+    public UserDto(String userId, String userPassword, String userName){
+
         this.userId = userId;
         this.userPassword = userPassword;
         this.userName = userName;
